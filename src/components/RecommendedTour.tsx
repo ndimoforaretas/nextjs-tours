@@ -1,13 +1,16 @@
-import { log } from "console";
+import Image from "next/image";
 import Link from "next/link";
 
 export const RecommendedTour = (props: any) => {
   return (
     <article className="bg-white rounded-lg shadow overflow-hidden">
-      <img
+      <Image
         className="w-full object-cover aspect-video"
-        src={props.story.content.main_image.filename}
+        src={`${props.story.content.main_image.filename}/m/736x414/filters:quality(70)`}
         alt={props.story.content.main_image.alt}
+        width={736}
+        height={414}
+        loading={"lazy"}
       />
       <div className="p-8">
         <div className="flex gap-4 justify-between text-lg font-bold">

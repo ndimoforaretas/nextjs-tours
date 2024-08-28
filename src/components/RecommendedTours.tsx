@@ -12,7 +12,7 @@ export const RecommendedTours = (params: any) => {
       <div className="grid md:grid-cols-2 gap-8 mt-16">
         {" "}
         {params.blok.tours.map((tour: any) => (
-          <RecommendedTour key={tour._uid} story={tour} />
+          <RecommendedTour key={tour.content._uid} story={tour} />
         ))}
       </div>
     </section>
