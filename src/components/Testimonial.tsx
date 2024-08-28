@@ -1,6 +1,10 @@
+import { storyblokEditable } from "@storyblok/react";
+
 export const Testimonial = (params: any) => {
   return (
-    <div className="bg-white p-8 rounded-lg shadow">
+    <div
+      {...storyblokEditable(params.blok)}
+      className="bg-white p-8 rounded-lg shadow">
       <p className="text-xl leading-relaxed text-gray-700 ">
         {params.blok.comment}
       </p>
