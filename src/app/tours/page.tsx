@@ -4,7 +4,7 @@ import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 const fetchToursPage = async () => {
   const client = getStoryblokApi();
   const response = await client.getStory(`tours`, {
-    version: "draft",
+    version: process.env.NODE_ENV === "development" ? "draft" : "published",
   });
   return response.data.story;
 };
@@ -13,7 +13,7 @@ const fetchAllTours = async () => {
   const client = getStoryblokApi();
   const response = await client.getStories({
     starts_with: "tour",
-    version: "draft",
+    version: process.env.NODE_ENV === "development" ? "draft" : "published",
   });
   return response.data.stories;
 };

@@ -2,8 +2,6 @@ import { log } from "console";
 import Link from "next/link";
 
 export const RecommendedTour = (props: any) => {
-  console.log(props.story);
-
   return (
     <article className="bg-white rounded-lg shadow overflow-hidden">
       <img
