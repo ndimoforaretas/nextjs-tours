@@ -21,12 +21,19 @@ const fetchAllTours = async () => {
 const ToursPage = async () => {
   const story = await fetchToursPage();
   const tours = await fetchAllTours();
+
   return (
     <div>
       <StoryblokStory story={story} />;
-      {tours.map((tour) => (
-        <RecommendedTour story={tour} key={tour.content._uid} />
-      ))}
+      <div className="grid md:grid-cols-3 gap-8 container mx-auto px-4 w-full py-16">
+        {tours.map(
+          (tour) =>
+            // ignore tours with the name "Tours"
+            tour.name !== "Tours" && (
+              <RecommendedTour story={tour} key={tour.content._uid} />
+            )
+        )}
+      </div>
     </div>
   );
 };

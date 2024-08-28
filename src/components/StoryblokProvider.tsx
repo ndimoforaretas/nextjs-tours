@@ -24,5 +24,5 @@ storyblokInit({
 });
 
 export const StoryblokProvider = ({ children }: PropsWithChildren) => {
-  return <div>{children}</div>;
+  return <>{children}</>;
 };

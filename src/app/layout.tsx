@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 const cachedFetch = (input: any, init?: any): Promise<Response> => {
   return fetch(input, {
     ...init,
-    cache: "no-cache",
+    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
   });
 };
 
@@ -34,10 +35,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-blue-50`}>
         <StoryblokProvider>
-          <div>Layout</div>
-          {children}
+          <header>
+            <nav className="container mx-auto px-4 w-full py-8 flex justify-between">
+              <Link href="/">Home</Link>
+              <Link href="/tours">Tours</Link>
+            </nav>
+          </header>
+          <main>{children}</main>
         </StoryblokProvider>
       </body>
     </html>
