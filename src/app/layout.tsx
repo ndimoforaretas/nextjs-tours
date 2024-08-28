@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { StoryblokProvider } from "@/components/StoryblokProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,9 +12,19 @@ export const metadata: Metadata = {
     "A tours website built with NextJS, Tailwind CSS, TypeScript, and Storyblok.",
 };
 
+const cachedFetch = (input: any, init?: any): Promise<Response> => {
+  return fetch(input, {
+    ...init,
+    cache: "no-cache",
+  });
+};
+
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
   use: [apiPlugin],
+  apiOptions: {
+    fetch: cachedFetch,
+  },
 });
 
 export default function RootLayout({
@@ -24,8 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>Layout</div>
-        {children}
+        <StoryblokProvider>
+          <div>Layout</div>
+          {children}
+        </StoryblokProvider>
       </body>
     </html>
   );

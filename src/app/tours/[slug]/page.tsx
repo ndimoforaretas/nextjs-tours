@@ -1,4 +1,4 @@
-import { getStoryblokApi } from "@storyblok/react/rsc";
+import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 
 const fetchTourPage = async (slug: string) => {
   const client = getStoryblokApi();
@@ -10,6 +10,6 @@ const fetchTourPage = async (slug: string) => {
 
 const TourPage = async (props: any) => {
   const story = await fetchTourPage(props.params.slug);
-  return <div>{JSON.stringify(story, null, 2)}</div>;
+  return <StoryblokStory story={story} />;
 };
 export default TourPage;
